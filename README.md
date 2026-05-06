@@ -4,6 +4,8 @@ This was the first chatbot that I have coded myself - done as part of a deep lea
 
 I love it as it simply says the accuracy when it doesn't understand something - maybe more of a joke for a budding software developer than a customer ;-) 
 
+It uses Transformers too - something of a personal goal since ChatGPT. 
+
 A simple semantic retrieval chatbot built with Sentence Transformers and scikit-learn.
 
 ## Project structure
