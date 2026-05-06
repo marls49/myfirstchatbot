@@ -1,5 +1,9 @@
 # kNN Embedding Chatbot
 
+This was the first chatbot that I have coded myself - done as part of a deep learning course. 
+
+I love it as it simply says the accuracy when it doesn't understand something - maybe more of a joke for a budding software developer than a customer ;-) 
+
 A simple semantic retrieval chatbot built with Sentence Transformers and scikit-learn.
 
 ## Project structure
