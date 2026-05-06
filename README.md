@@ -36,7 +36,7 @@ Type a question and the bot returns the closest matching answer. If the match is
 1. Questions are embedded with `all-MiniLM-L6-v2`.
 2. The embeddings are indexed with cosine-distance kNN.
 3. The closest document is selected.
-4. If the distance is above the threshold, the bot declines to answer.
+4. If the distance is above the threshold, the bot tells you what the prediction is and that is it too low to answer.
 
 ## Notes
 
