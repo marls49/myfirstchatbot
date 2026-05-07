@@ -42,9 +42,9 @@ Type a question and the bot returns the closest matching answer. If the match is
 
 You can extend this by loading documents from a file, separating data from code, or adding a feedback loop for unanswered questions.
 
-#MLSDL
+# MLSDL
 
-## Problem framing
+## 1.Problem framing
 Business objective: Build a customer support chatbot that answers common questions about passwords, shipping, returns, payments, and contact info.
 ML task: kNN classification—match user questions to the most relevant predefined answer using nearest neighbor search on embeddings.
 
