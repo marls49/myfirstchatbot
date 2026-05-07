@@ -41,3 +41,48 @@ Type a question and the bot returns the closest matching answer. If the match is
 ## Notes
 
 You can extend this by loading documents from a file, separating data from code, or adding a feedback loop for unanswered questions.
+
+#MLSDL
+
+## Problem framing
+Business objective: Build a customer support chatbot that answers common questions about passwords, shipping, returns, payments, and contact info.
+ML task: kNN classification—match user questions to the most relevant predefined answer using nearest neighbor search on embeddings.
+
+## Hypothesis formulation
+Expected patterns: User questions about the same topic (e.g., "password reset," "forgot login") will cluster together in embedding space.
+Predictive signals: Measuring the distance between the vectors & deciding that < 0.3 indicates good match.
+
+## Data collection and understanding
+Data sources: 5 predefined Q&A pairs covering common customer support topics.
+Structure: Simple list of strings; German-focused customer service domain.
+Limitations: Small dataset (5 documents), no training data, potential for out-of-domain questions.
+
+## Exploratory data analysis (minimal)
+Approach: Manual check of embedding distances between known similar questions.
+Findings: Baseline questions are well-separated; threshold of 0.3 works for distinguishing good vs poor matches.
+Risks: Limited coverage means weak matches for edge cases.
+
+## Hypothesis validation before modeling
+Simple rule: Test that known-similar questions have cosine distance < 0.3.
+Baseline check: Keyword matching fails on paraphrases (distance > 0.6), confirming kNN adds value.
+
+## Feature engineering
+Raw → features: Convert text questions to 384-dim vectors using all-MiniLM-L6-v2.
+No additional: Pretrained embeddings handle encoding/scaling automatically.
+
+## Model development
+Baseline: Exact string matching (rejected—poor paraphrase handling).
+Main approach: kNN with scikit-learn NearestNeighbors (k=3, cosine metric).
+Why kNN: No training needed, scales with documents, interpretable distances.
+
+## Evaluation
+Metrics: Cosine distance (lower = better match); business goal = relevant answers > 70% of time.
+Validation: The 0.3 threshold was hand-tuned for this small demo dataset between the question and the closest knowledge match.
+
+## Deployment (Next step)
+Current: CLI chat loop (main.py).
+Production path: Wrap get_best_answer() in FastAPI; log confidence scores for monitoring.
+
+## Optimization (Next step)
+Monitoring: Track average match confidence, unanswered question rate, user feedback.
+Next steps: Expand knowledge base from real queries; tune k/threshold; add human fallback for low-confidence cases.
